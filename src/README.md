@@ -1,11 +1,13 @@
 # Mergington High School Activities API
 
-A super simple FastAPI application that allows students to view and sign up for extracurricular activities.
+A super simple FastAPI application that allows teachers to manage extracurricular activity registration while students can still view activities and participants.
 
 ## Features
 
 - View all available extracurricular activities
-- Sign up for activities
+- Teacher login for registration management
+- Sign up students for activities
+- Remove students from activities
 
 ## Getting Started
 
@@ -30,7 +32,17 @@ A super simple FastAPI application that allows students to view and sign up for 
 | Method | Endpoint                                                          | Description                                                         |
 | ------ | ----------------------------------------------------------------- | ------------------------------------------------------------------- |
 | GET    | `/activities`                                                     | Get all activities with their details and current participant count |
-| POST   | `/activities/{activity_name}/signup?email=student@mergington.edu` | Sign up for an activity                                             |
+| POST   | `/auth/login`                                                     | Start a teacher session                                             |
+| POST   | `/auth/logout`                                                    | End the current teacher session                                     |
+| GET    | `/auth/session`                                                   | Check whether the current teacher session is valid                  |
+| POST   | `/activities/{activity_name}/signup?email=student@mergington.edu` | Sign up a student for an activity                                   |
+| DELETE | `/activities/{activity_name}/unregister?email=student@...`        | Remove a student from an activity                                   |
+
+The signup and unregister endpoints require a teacher session token.
+
+## Teacher Credentials
+
+Seeded teacher accounts are stored in `teachers.json` and loaded by the backend at startup.
 
 ## Data Model
 
