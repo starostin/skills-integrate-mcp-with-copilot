@@ -7,9 +7,31 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <header>
-      <h1>Mergington High School</h1>
-      <h2>Extracurricular Activities</h2>
+    <header class="site-header">
+      <div>
+        <h1>Mergington High School</h1>
+        <h2>Extracurricular Activities</h2>
+      </div>
+
+      <div class="auth-controls">
+        <button
+          id="auth-toggle"
+          class="icon-button"
+          type="button"
+          aria-expanded="false"
+          aria-controls="auth-menu"
+          aria-label="Open teacher account menu"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 12a4 4 0 1 0-4-4 4 4 0 0 0 4 4Zm0 2c-4.42 0-8 2.24-8 5v1h16v-1c0-2.76-3.58-5-8-5Z" />
+          </svg>
+        </button>
+
+        <div id="auth-menu" class="auth-menu hidden">
+          <p id="auth-status-text">Student view</p>
+          <button id="auth-action" type="button">Teacher Login</button>
+        </div>
+      </div>
     </header>
 
     <main>
@@ -22,7 +44,15 @@
       </section>
 
       <section id="signup-container">
-        <h3>Sign Up for an Activity</h3>
+        <div class="section-header">
+          <h3>Manage Activity Registration</h3>
+          <span id="teacher-badge" class="teacher-badge hidden"></span>
+        </div>
+
+        <p id="signup-helper" class="info-banner">
+          Teacher login required to register or remove students from activities.
+        </p>
+
         <form id="signup-form">
           <div class="form-group">
             <label for="email">Student Email:</label>
@@ -44,6 +74,27 @@
     <footer>
       <p>&copy; 2026 Mergington High School</p>
     </footer>
+
+    <div id="login-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="login-title">
+      <div class="modal-card">
+        <button id="close-login-modal" class="modal-close" type="button" aria-label="Close login dialog">
+          x
+        </button>
+        <h3 id="login-title">Teacher Login</h3>
+        <p class="modal-copy">Teachers must sign in to register or remove students from activities.</p>
+        <form id="login-form">
+          <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" id="username" required autocomplete="username" />
+          </div>
+          <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" required autocomplete="current-password" />
+          </div>
+          <button type="submit">Sign In</button>
+        </form>
+      </div>
+    </div>
 
     <script src="app.js"></script>
   </body>
